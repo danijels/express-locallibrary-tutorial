@@ -1,4 +1,5 @@
 const createError = require('http-errors');
+const helmet = require('helmet');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -24,6 +25,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.set('views', path.join(__dirname, 'views')); //This is where I set the root, the first part of every url path that is the first arg in res.render methods.i.e.this tells express that it should search for TEMPLATES in the views directory
 app.set('view engine', 'pug'); 
 
+app.use(helmet);
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
